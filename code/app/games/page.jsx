@@ -14,7 +14,7 @@ const games = [
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center mx-auto px-4 py-6 h-screen overflow-y-scroll">
+    <div className="flex flex-col items-center mx-auto px-1 py-6 h-screen overflow-y-scroll">
       <h1 className="text-2xl font-bold mb-6">User Dashboard</h1>
       
       <section className="mb-6 w-full max-w-7xl">

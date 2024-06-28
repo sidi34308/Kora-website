@@ -1,0 +1,42 @@
+
+//   id          String @id @default(auto()) @map("_id")
+//   phoneNumber String
+//   otp         String
+//   createdAt   DateTime @default(now())
+// }
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  phoneNumber     String   @unique
+  role            String   
+  Password        String
+  registeredGames String[]
+}
+
+model Organizer {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  phoneNumber     String   @unique
+  Password        String
+  organizedGames  String[]
+}
+
+model Game {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  fieldLocation    String
+  dateTime         DateTime
+  skillLevel       String
+  maxPlayers       Int
+  feesPerPerson    Int  
+  registeredPlayers String[]
+  organizerId      String   @db.ObjectId
+}

@@ -19,7 +19,7 @@ const FootBar = () => {
         </a>
         <a className="hover p-2 hover:bg-gray-200 rounded-xl "  href="/profile">
           <div className="gap-1 flex flex-col items-center   ">
-            <img src='/profile_icon.svg'  className="h-6 w-6 svg-icon" />
+            <img src='/profile_icon.svg'  className="h-6 w-6 svg-icon  " />
             <span className="text-xs">Profile</span>
           </div>
         </a>

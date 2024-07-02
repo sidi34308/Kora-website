@@ -33,7 +33,11 @@ model Organizer {
 model Game {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
   fieldLocation    String
+  locationId       String?
+  duration         Int?
+  title            String?
   dateTime         DateTime
+  numberOfTeams    Int?
   skillLevel       String
   maxPlayers       Int
   feesPerPerson    Int  

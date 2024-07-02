@@ -2,8 +2,10 @@ import { getAllGames, createGame, updateGame, deleteGame } from './games';
 
 export async function GET(request, { params }) {
     try {
-        if (params.id) {
-            const Game = await getGame(params.id);
+        const { id } = params;
+        console.log(id);
+        if (id) {
+            const Game = await getGame(id);
             return new Response(JSON.stringify(Game), { status: 200 });
         } else {
             const Games = await getAllGames();

@@ -35,3 +35,22 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 3px solid #f8fafc;
 }
+.card {
+  border-radius: 18px;
+  border: 1px solid #FFF;
+  background: #FBFBFB;
+  box-shadow: 0px 104px 162px 0px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden; /* Ensure that the image doesn't overflow the card's borders */
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 120px 182px 0px rgba(0, 0, 0, 0.18);
+}
+
+
+::selection {
+  background-color: #2DA4B5;
+  color: #ffffff;
+}

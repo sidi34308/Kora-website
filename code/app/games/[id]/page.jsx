@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from 'axios';
+import locations from '../../resources/locations';
 
 const GameDetails = () => {
   const { id } = useParams(); // Get the game ID from the URL
@@ -33,43 +34,73 @@ const GameDetails = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+  const location = locations.find(loc => loc.id == parseInt(game.locationId));
 
   return (
-    <div className="max-w-lg mx-auto p-4">
-      <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
-        <div className="relative h-64">
-          <Image src={game.imageSrc} alt="Game Image" layout="fill" objectFit="cover" />
-          <div className="absolute bottom-0 left-0 p-4 bg-opacity-75 bg-gray-800 w-full text-white">
-            <h2 className="text-2xl font-bold">{id}</h2>
+    <div className="max-w-2xl  mx-auto p-4 mb-20">
+      <div className="  ">
+        <div className="relative h-60">
+          <Image className="rounded-2xl" src={location.image} alt="Game Image" layout="fill" objectFit="cover" />
+          <div className="rounded-2xl absolute bottom-0 left-0 p-4 black-gradient  w-full text-white">
+            <h2 className="text-2xl font-bold">{game.title}</h2>
             <p>Join us for a friendly game!</p>
+            <div className="flex justify-between items-center ">
+              <button className="bg-[#49919C] py-2 px-4 mt-2 rounded-2xl hover:bg-[#3e7f89]">Register</button>
+              <div className="flex justify-center text-black font-black text-2xl gap-1 items-center relative">
+                <div className="bg-white py-2 px-3 rounded-xl">{game.maxPlayers}</div>
+                <div className="text-[#49919C] text-2xl font-bold absolute bottom-[-2px]   z-10 ">vs</div>
+                <div className="bg-white py-2 px-3 rounded-xl">{game.maxPlayers}</div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="p-4">
           <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-4">Match Details</h3>
+            <h3 className="text-xl font-semibold mb-4">Match Details 🔥</h3>
+            <div className="flex justify-around sm:justify-start gap-4 py-8">
+              <div className="bg-white min-w-[82px] min-h-[82px] flex flex-col justify-center items-center gap-1 rounded-3xl">
+                <div className="">Duration</div>
+                <div className="font-bold ">{game.duration}</div>
+              </div>
+              <div className="bg-white min-w-[82px] min-h-[82px] flex flex-col justify-center items-center gap-1 rounded-3xl">
+                <div className="">Teams</div>
+                <div className="font-bold ">{game.maxPlayers}</div>
+              </div>
+              <div className="bg-white min-w-[82px] min-h-[82px] flex flex-col justify-center items-center gap-1 rounded-3xl">
+                <div className="">Fees</div>
+                <div className="font-bold "> {game.feesPerPerson} QR </div>
+              </div>
+            </div>
+            
             <ul className="space-y-2">
-              <li><strong>Date & Time:</strong> {new Date(game.dateTime).toLocaleString()}</li>
-              <li><strong>Location:</strong> {game.fieldLocation}</li>
-              <li><strong>Fees:</strong> {game.fees} QR per person</li>
+              <li className="flex gap-3"> 
+                <div className="bg-gray-200 p-4 flex items-center justify-center rounded-xl">
+                    <img src="/clock-2.svg"/>
+                </div>
+                <div  className="flex flex-col">
+                  <strong>Date & Time</strong> {new Date(game.dateTime).toLocaleString()}
+                </div>
+              </li>
+              <li className="flex gap-3 ">
+                <div className="bg-gray-200 p-4 flex items-center justify-center rounded-xl">
+                    <img src="/location.svg"/>
+                </div>
+                <div className="flex flex-col">
+                  <strong>Location</strong> {game.fieldLocation}
+                </div>
+              </li>
+          
             </ul>
           </div>
-          <div className="mb-4">
-            <h3 className="text-xl font-semibold">Participants</h3>
-            <div className="flex space-x-4">
-              {game.participants.map((participant, index) => (
-                <div key={index} className="w-16 h-16 rounded-full overflow-hidden border-2">
-                  {/* <Image src={participant.image} alt={participant.name} width={64} height={64} /> */}
-                  <p className="text-center text-xs mt-2">{participant.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <button className="flex-1 bg-[#49919C] text-white py-2 rounded">Register</button>
-            <button className="flex-1 bg-[#EEEFF2] text-gray-400 py-2 rounded">Unregister</button>
-          </div>
+  
+    
         </div>
+        
       </div>
+      <div className="flex flex-col gap-2 mb-2 font-medium ">
+            <button className="flex-1 bg-[#49919C] text-white py-2 rounded-xl">Register</button>
+            <button className="flex-1 bg-[#EEEFF2] text-gray-500 py-2 rounded-xl">Unregister</button>
+          </div>
     </div>
   );
 };

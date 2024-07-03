@@ -34,12 +34,12 @@ const Home = () => {
   }
 
   return (
-    <div className="flex flex-col items-center mx-auto px-10 py-6 h-screen mb-60">
+    <div className="flex flex-col items-center mx-auto px-10 py-6 h-screen mb-80">
       <h1 className="text-2xl font-bold mb-6">Your Dashboard 🔥⚽</h1>
       
       <section className="mb-6 w-full max-w-7xl">
-        <h2 className="text-xl font-semibold mb-4">Upcoming Games</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+        <h2 className="text-xl font-semibold mb-4">{`Upcoming Games  (${games.length})`}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4">
           
           {games.map(game => (
             <Card 

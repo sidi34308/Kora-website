@@ -9,9 +9,7 @@ export async function getUser(id) {
         where: {
             id: id,
         },
-        include: {
-            registeredGames: true,
-        },
+      
     });
 }
 

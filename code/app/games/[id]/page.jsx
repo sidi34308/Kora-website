@@ -1,22 +1,38 @@
 "use client";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import axios from 'axios';
 
 const GameDetails = () => {
-  const game = {
-    id: 1,
-    imageSrc: "/images/game1.jpg",
-    title: "Sunday League Match",
-    dateTime: "2023-06-25T10:00:00",
-    fieldLocation: "Greenfield Park, Field 3",
-    fees: "35",
-    participants: [
-      { name: "Participant 1", image: "/images/participant1.jpg" },
-      { name: "Participant 2", image: "/images/participant2.jpg" },
-      { name: "Participant 3", image: "/images/participant3.jpg" },
-      { name: "Participant 4", image: "/images/participant4.jpg" },
-    ],
-    isRegistered: false,
-  };
+  const { id } = useParams(); // Get the game ID from the URL
+  const [game, setGame] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await axios.get(`/api/games/${id}`);
+        console.log(response.data);
+        setGame(response.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGames();
+  }, []);
+
+  if (loading) {
+    return <div className="flex justify-center p-10"><img src="/loader.svg" alt=""  className="w-32"/></div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="max-w-lg mx-auto p-4">
@@ -24,7 +40,7 @@ const GameDetails = () => {
         <div className="relative h-64">
           <Image src={game.imageSrc} alt="Game Image" layout="fill" objectFit="cover" />
           <div className="absolute bottom-0 left-0 p-4 bg-opacity-75 bg-gray-800 w-full text-white">
-            <h2 className="text-2xl font-bold">{game.title}</h2>
+            <h2 className="text-2xl font-bold">{id}</h2>
             <p>Join us for a friendly game!</p>
           </div>
         </div>

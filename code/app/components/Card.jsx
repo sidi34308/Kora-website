@@ -1,4 +1,5 @@
 "use client"; // This directive marks this file as a client component
+import Link from 'next/link';
 import locations from '../resources/locations';
 import React from 'react';
 
@@ -14,6 +15,7 @@ const Card = ({ data }) => {
   const location = locations.find(loc => loc.id == parseInt(data.locationId));
 
   return (
+    <Link href={`/games/${data.id}`} >
     <div className="bg-white  p-4 flex flex-col  card">
      
       {location && (
@@ -34,6 +36,7 @@ const Card = ({ data }) => {
         <div className=" mt-4 px-4 py-2 bg-gray-500 flex items-center justify-between gap-2 rounded-2xl"><img src="/duration.svg" className="w-5"/> <div className="text-white ">{data.duration} hour</div></div>
       </div>
     </div>
+    </Link>
   );
 };
 

@@ -3,7 +3,7 @@ import { getAllGames, createGame, updateGame, deleteGame } from './games';
 export async function GET(request, { params }) {
     try {
         const { id } = params;
-        console.log(id);
+        console.log(params);
         if (id) {
             const Game = await getGame(id);
             return new Response(JSON.stringify(Game), { status: 200 });

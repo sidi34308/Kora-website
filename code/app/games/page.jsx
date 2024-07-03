@@ -40,11 +40,14 @@ const Home = () => {
       <section className="mb-6 w-full max-w-7xl">
         <h2 className="text-xl font-semibold mb-4">Upcoming Games</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+          
           {games.map(game => (
             <Card 
               data={game}
+              key={game.id}
             />
           ))}
+
         </div>
       </section>
 {/* 

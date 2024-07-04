@@ -97,7 +97,8 @@ const GameDetails = () => {
                   <strong>Location</strong> {game.fieldLocation}
                 </div>
               </li>
-          
+              <iframe className="w-full h-30 rounded-lg" src={`${location.map}`} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
             </ul>
           </div>
   

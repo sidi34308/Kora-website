@@ -15,6 +15,7 @@ export default function PostGame() {
   const [feesPerPerson, setFeesPerPerson] = useState('');
   const [locationId, setLocationId] = useState(locations[0]?.id || '');
   const [locationImage, setLocationImage] = useState(locations[0]?.image || '');
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleLocationChange = (e) => {
     const selectedLocation = locations.find(loc => loc.id === parseInt(e.target.value));
@@ -37,24 +38,30 @@ export default function PostGame() {
       fieldLocation: locations.find(loc => loc.id === parseInt(locationId))?.name,
       organizerId:'64928f32a9b40a55a3b1c859', // Replace with the actual organizer's ID
     };
-
     const response = await fetch('/api/games', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(gameData),
-    });
-
-    if (response.ok) {
-      console.log('Game posted successfully');
-    } else {
-      console.error('Failed to post game');
-    }
-  };
-
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameData),
+      });
+  
+      if (response.ok) {
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 3000); // Hide popup after 3 seconds
+      } else {
+        alert('Failed to post game');
+      }
+    };
+  
   return (
     <div className="max-w-4xl mx-auto p-12 bg-white rounded-2xl mb-32">
+      
+      {showPopup && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white py-2 px-4 rounded shadow-lg">
+          Game posted successfully!
+        </div>
+      )}
       <h1 className="text-2xl font-bold mb-6">Post a New Game ⚽</h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>

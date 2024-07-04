@@ -27,6 +27,7 @@ model Organizer {
   name            String
   phoneNumber     String   @unique
   Password        String
+    role            String? 
   organizedGames  String[]
 }
 

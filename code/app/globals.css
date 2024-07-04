@@ -64,3 +64,27 @@ body::-webkit-scrollbar-thumb {
 .black-gradient{
   background: linear-gradient(180deg, rgba(217, 217, 217, 0.00) 0%, rgba(0, 0, 0, 0.44) 100%);
 }
+
+.react-datepicker__header {
+  background-color: #49919C;
+}
+
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range {
+  background-color: #49919C;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #397780;
+}
+
+.react-datepicker__current-month, .react-datepicker-time__header {
+  color: white;
+}
+
+.react-datepicker__day--today {
+  border-color: #49919C;
+}
+
+.react-datepicker__day--outside-month {
+  color: #d1d5db; /* Tailwind's gray-300 */
+}

@@ -12,7 +12,7 @@ const GameDetails = () => {
   const [error, setError] = useState(null);
   
   useEffect(() => {
-    const fetchGames = async () => {
+    const fetchGames = async () => { 
       try {
         const response = await axios.get(`/api/games/${id}`);
         console.log(response.data);
@@ -45,7 +45,7 @@ const GameDetails = () => {
             <h2 className="text-2xl font-bold">{game.title}</h2>
             <p>Join us for a friendly game!</p>
             <div className="flex justify-between items-center ">
-              <button className="bg-[#49919C] py-2 px-4 mt-2 rounded-2xl hover:bg-[#3e7f89]">Register</button>
+              <a href={`/register/${game.id}`} className="bg-[#49919C] py-2 px-4 mt-2 rounded-2xl hover:bg-[#3e7f89]">Register</a>
               <div className="flex justify-center text-black font-black text-2xl gap-1 items-center relative">
                 <div className="bg-white py-2 px-3 rounded-xl">{game.maxPlayers}</div>
                 <div className="text-[#49919C] text-2xl font-bold absolute bottom-[-2px]   z-10 "><svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,8 +106,8 @@ const GameDetails = () => {
         </div>
         
       </div>
-      <div className="flex flex-col gap-2 mb-2 font-medium ">
-            <button className="flex-1 bg-[#49919C] text-white py-2 rounded-xl">Register</button>
+      <div className="flex  flex-col gap-2 mb-2 font-medium ">
+            <a href={`/register/${game.id}`} className="flex justify-center w-full bg-[#49919C] text-white py-2 rounded-xl">Register</a>
             <button className="flex-1 bg-[#EEEFF2] text-gray-500 py-2 rounded-xl">Unregister</button>
           </div>
     </div>

@@ -18,7 +18,12 @@ model User {
   name            String
   phoneNumber     String   @unique
   role            String   
-  Password        String
+  gender String
+  age String
+  createdAt       DateTime @default(now())
+  Password        String 
+  level String @default("beginner")
+  points Int  @default(0)
   registeredGames String[]
 }
 
@@ -27,14 +32,14 @@ model Organizer {
   name            String
   phoneNumber     String   @unique
   Password        String
-    role            String? 
+  role            String 
   organizedGames  String[]
 }
 
 model Game {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
   fieldLocation    String
-  locationId       String?
+  locationId       Int
   duration         Int?
   title            String?
   dateTime         DateTime

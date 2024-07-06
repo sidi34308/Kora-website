@@ -34,7 +34,7 @@ export default function PostGame() {
       skillLevel,
       maxPlayers: parseInt(maxPlayers),
       feesPerPerson: parseInt(feesPerPerson),
-      locationId: `${locationId}`,
+      locationId: parseInt(locationId), // Convert locationId to integer
       fieldLocation: locations.find(loc => loc.id === parseInt(locationId))?.name,
       organizerId:'64928f32a9b40a55a3b1c859', // Replace with the actual organizer's ID
     };

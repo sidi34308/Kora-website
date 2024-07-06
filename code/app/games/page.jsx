@@ -1,5 +1,6 @@
 // pages/home.jsx
 "use client";
+import Error500 from '../components/Error500';
 import React, { useEffect, useState } from 'react';
 import Card from '../components/Card';
 import axios from 'axios';
@@ -30,7 +31,7 @@ const Home = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div><Error500/></div>;
   }
 
   return (
